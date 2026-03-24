@@ -106,37 +106,39 @@ class Nacelle_controller:
         print(f"You add the following arguments to the token : {arg1}, {arg2}, {arg3}, {arg4} !\n")
         return
     
-    def open(self,id):#done
-        reponse = self.send_serial_message("open " + str(id))
+    def open(self,id):
+        reponse = self.send_serial_message("open " + str(id) + "\n")
         print("grabber " + str(id) + " openned.") if reponse == "open_success" else print("COMMUNCATION FAILED, CHECK PHYSICAL CONNECTION")
         return
 
-    def close(self,id):#done
-        reponse = self.send_serial_message("close " + str(id))
+    def close(self,id):
+        reponse = self.send_serial_message("close " + str(id) + "\n")
         print("grabber " + str(id) + " closed.") if reponse == "close_success" else print("COMMUNCATION FAILED, CHECK PHYSICAL CONNECTION")
         return
 
-    def force_open(self): #done
-        reponse = self.send_serial_message("force_open")
+    def force_open(self):
+        reponse = self.send_serial_message("force_open\n")
         print("all grabbers openned.") if reponse == "open_forced" else print("COMMUNCATION FAILED, CHECK PHYSICAL CONNECTION")
         return
 
-        
-    def force_close(self): #done
-        reponse = self.send_serial_message("force_closed")
-        print("all grabbers close.") if reponse == "close_forced" else print("COMMUNCATION FAILED, CHECK PHYSICAL CONNECTION")        
+    def force_close(self):
+        reponse = self.send_serial_message("force_close\n")
+        print("all grabbers close.") if reponse == "close_forced" else print("COMMUNCATION FAILED, CHECK PHYSICAL CONNECTION")
         return
 
-    def reset_nacelle(self): #done
-        response = self.send_serial_message("reset_req")
+    def reset_nacelle(self):
+        response = self.send_serial_message("reset_req\n")
         print("RESET CONFIRMED") if response == "reset confirmation" else print("COMMUNCATION FAILED, CHECK PHYSICAL CONNECTION")
         return
-            
-    def get_nacelle_status(self): #done
-        response = self.send_serial_message("status_req")
-        print(response)
+
+    def get_nacelle_status(self):
+        response = self.send_serial_message("status_req\n")
         print(response) if response is not None else print("COMMUNCATION FAILED, CHECK PHYSICAL CONNECTION")
-        return    
+        return
+
+    def hello_world(self):
+        reponse = self.send_serial_message("Hello nacelle\n")
+        print("Nacelle : " + reponse)
         
     def help(self):
         print("Available Actions:\n")
